@@ -16,7 +16,7 @@ class PagesController extends Controller
      */
     public function index()
     {
-        $user = User::orderBy('id', 'asc')->paginate(10);
+        $user = User::orderBy('id', 'desc')->paginate(10);
         return view('pages/index', compact('user')); //
     }
 
@@ -28,7 +28,8 @@ class PagesController extends Controller
     public function create()
     {
         $mode = 'Create';
-        return view('pages/create', compact('mode'));
+        $gender = 'Male';
+        return view('pages/create', compact('mode', 'gender'));
     }
 
     /**
@@ -51,7 +52,10 @@ class PagesController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $mode = 'Show';
+
+        return view('pages/show', compact('mode', 'user'));//
     }
 
     /**
@@ -63,8 +67,9 @@ class PagesController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
+        $gender = $user['gender'];
         $mode = 'Update';
-        return view('pages/edit', compact('user', 'mode'));
+        return view('pages/edit', compact('user', 'mode', 'gender'));
         //
     }
 

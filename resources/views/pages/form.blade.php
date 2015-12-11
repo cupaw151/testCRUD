@@ -4,7 +4,7 @@
 </div>
 <div class="form-group">
     {!! Form::label('gender', 'Gender') !!}
-    {!! Form::select('gender', [0=>'Male', 1=>'Female'], 0, ['class' => 'form-control']) !!}
+    {!! Form::select('gender', ['Male'=>'Male', 'Female'=>'Female'], $gender,['class' => 'form-control']) !!}
 </div>
 <div class="form-group">
     {!! Form::label('description', 'Description') !!}
@@ -13,3 +13,11 @@
 <div class="form-group">
     {!! Form::submit($mode, ['class' => 'btn btn-info']) !!}
 </div>
+
+@if ($errors->any())
+    <ul class="alert-danger">
+        @foreach($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+@endif

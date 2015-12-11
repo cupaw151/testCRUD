@@ -21,6 +21,9 @@
                 <a href="{{ URL::action('PagesController@edit', $users->id) }}" class="btn btn-info">
                     Update
                 </a>
+                <a href="{{ URL::action('PagesController@show', $users->id) }}" class="btn btn-info">
+                    Show
+                </a>
                 {!! Form::open([
                                 'method' => 'DELETE',
                                 'action' => ['PagesController@destroy', $users->id],
